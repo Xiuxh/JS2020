@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>珠峰培训</title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="price.css"/>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<!-- <ul class="list">
+					<li>
+						<i class="btn-l"></i>
+						<em>0</em>
+						<i class="btn-r"></i>
+						<span>
+							单价：<strong>12.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i class="btn-l"></i>
+						<em>0</em>
+						<i class="btn-r"></i>
+						<span>
+							单价：<strong>10.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i class="btn-l"></i>
+						<em>0</em>
+						<i class="btn-r"></i>
+						<span>
+							单价：<strong>8.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i class="btn-l"></i>
+						<em>0</em>
+						<i class="btn-r"></i>
+						<span>
+							单价：<strong>8元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+					<li>
+						<i class="btn-l"></i>
+						<em>0</em>
+						<i class="btn-r"></i>
+						<span>
+							单价：<strong>14.5元 </strong> 小计：<strong>0元</strong>
+						</span>
+					</li>
+				</ul>
+				<div class="info">
+					<span>商品公合计：<em>0</em>件</span>
+					<span>共花费了：<em>0</em>元</span>
+					<br />
+					<br />
+					<span>其中最贵的商品单价是：<em>0</em>元</span>
+				</div> -->
+			</div>
+		</div>
+		<!-- <script>
+			let liList = document.querySelectorAll('.wrap li'),//所有的li标签
+				btnLeft = document.querySelectorAll('.btn-l'),//减号
+				numberList = document.querySelectorAll('.wrap .list em'),//各类商品的数量集合
+				btnRight = document.querySelectorAll('.btn-r'),//加号
+				totalNum = document.querySelectorAll('.info em')[0],//商品合计数量
+				totalPrice = document.querySelectorAll('.info em')[1],//商品合计价格
+				highPrice = document.querySelectorAll('.info em')[2],//最高商品价格
+				ary = [],
+				unitPrice = [],
+				subTotal = [];
+				
+			for (let i = 0; i < liList.length; i++) {
+				liList.index = i;
+				unitPrice[i] = liList[i].querySelectorAll('.list strong')[0];//单价
+				subTotal[i] = liList[i].querySelectorAll('.list strong')[1];//小计
+			}
+			// 利用自执行函数形成闭包
+			let shopSum = (function () {
+				// 增加单件数量
+				let numberUp = ()=> {
+					for (let i = 0; i < btnRight.length; i++) {
+						btnRight[i].onclick = () => {
+							numberList[i].innerText = parseInt(numberList[i].innerText) + 1;
+							subTotal[i].innerText = parseFloat(subTotal[i].innerText) + parseFloat(unitPrice[i].innerText) + "元";
+							totalNum.innerText = parseInt(totalNum.innerText) + 1;
+							totalPrice.innerText = parseFloat(totalPrice.innerText) + parseFloat(unitPrice[i].innerText);
+							for (let k = 0; k < liList.length; k++) {
+								numberList[k].innerHTML > 0 ? ary[k] = (parseFloat(unitPrice[k].innerText)) : ary[k] = 0;
+							}
+							highPrice.innerText = Math.max.apply(null,ary);
+						}
+					}
+				}
+				let numberDown = ()=>{
+					for (let i = 0; i < btnLeft.length; i++) {
+						btnLeft[i].onclick = () => {
+							if (numberList[i].innerText > 0) {
+								numberList[i].innerText = parseInt(numberList[i].innerText) - 1;
+								subTotal[i].innerText = parseFloat(subTotal[i].innerText) - parseFloat(unitPrice[i].innerText) + "元";
+								totalNum.innerText = parseInt(totalNum.innerText) - 1;
+								totalPrice.innerText = parseFloat(totalPrice.innerText) - parseFloat(unitPrice[i].innerText);
+								for (let k = 0; k < liList.length; k++) {
+								numberList[k].innerHTML > 0 ? ary[k] = (parseFloat(unitPrice[k].innerText)) : ary[k] = 0;
+							}
+							highPrice.innerText = Math.max.apply(null,ary);
+							}		
+						}
+					}
+				}
+				return {
+					init(){
+						numberUp();
+						numberDown();
+					}
+				};
+
+			})()
+			shopSum.init();
+		</script> -->
+		<script src="./shop.js"></script>
+	</body>
+
+</html>
