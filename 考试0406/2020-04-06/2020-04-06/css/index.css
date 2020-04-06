@@ -1,0 +1,52 @@
+.container {
+    padding: 50px 0;
+    background-color: #fff;
+}
+.container .navbar-nav .fl {
+    font-size: 20px;
+    color: black;
+    float: left;
+}
+.container .navbar-nav .fl a {
+    font-size: 16px;
+    color: #777;
+    margin-left: 10px;
+}
+@media (min-width: 768px) {
+    .container {
+        margin: 0 auto;
+        width: 1000px;
+    }
+    .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-nav li {
+        padding: 0 .5rem;
+    }
+}  
+.productBox {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+.productBox .card {
+    margin-right: 1%;
+    margin-top: 20px;
+    width: 19.2%;
+}
+.productBox .card:nth-child(5n+5) {
+    margin-right: 0;
+}
+.productBox .card img {
+    width: 100%;
+}
+.productBox .card h4 {
+    font-size: 22px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.productBox .card p {
+    font-size: 16px;
+    margin-top: 5px;
+}
