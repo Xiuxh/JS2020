@@ -1,0 +1,52 @@
+### 结合正则和execAll的思想  实现 queryParams
+  let str = 'https://baicu.com?abc=123&zf=666&px=888&_=t';
+  let reg = /([^?&=]+)=([^?&=]+)/g; 
+  RegExp.prototype.execAll = function (str) {
+      let _this = this;
+      if (!_this.global) {
+          _this = eval(_this + 'g')
+      };
+      let res = _this.exec(str),
+          ary = [];
+      while (res) {
+          ary.push(res[0]);
+          res = _this.exec(str);
+      }
+      return ary;
+  };
+  console.log(reg.execAll(str));
+
+### 获取一个字符串中出现次数最多的字符 及其 次数 
+  var str = 'ertefvzdgfergsegfsdrgrgfbshtrh';
+      // 先排序再比较次数
+      str = str.split('').sort((a,b) =>a.localeCompare(b)).join('');
+      let reg = /([a-zA-Z])\1+/g;
+      let ary = str.match(reg).sort((a,b) => b.length - a.length);
+      let max = ary[0].length,
+          res = [ary[0].substr(0,1)];
+      for (let i = 1 ;i < ary.length ; i++) {
+          let item = ary[i];
+          item.length === max ? res.push(item.substr(0,1)) : null ; 
+      }
+      console.log(max,res);
+### 实现一个千分符的函数 
+‘124252343’  ‘124,252,343’
+  let str2 = '1231241241.111',
+      reg1 = /\d{1,3}/g,
+      reg2 = /(\d+)(?=\.)/g,
+      reg3 = /\d+$/g,
+      char,
+      result;
+  char = String(str2.match(reg2));
+  console.log(char);
+  char = Array.from(char).reverse().join('');
+  char = char.match(reg1).join();
+  char = Array.from(char).reverse().join('');
+  result =`${char}.${str2.match(reg3)}`;
+  // console.log(char,str2,result)
+### 结合replace实现 queryParams
+  let obj = {};
+  let reg = /([^?=&#]+)=([^?=&#]+)/g;
+  str.replace(reg, (...[,$1,$2]) => obj[$1] = $2);
+  str.replace(/#[^?=&#]+/g, (...[,$1]) => obj['HASH'] = $1);
+  console.log(obj);
