@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let res = parseFloat('left:200px');//=>1
+        // if(res===200){
+        // alert(200);
+        // }else if(res===NaN){
+        // alert(NaN);
+        // }else if(typeof res==='number'){
+        // alert('number');
+        // }else{
+        // alert('Invalid Number');
+        // }
+
+        // let result = 10+false+undefined+[]+'北京珠峰培训'+null+true+{};//2
+        // console.log(result);
+
+        // let a = 12;//=>3
+        // let b = a;
+        // b = 13;
+        // console.log(a);
+        //-----------------
+        // let a = {n: 12};
+        // let b = a;
+        // b['n'] = 13;
+        // console.log(a.n);
+        //-----------------
+        // let a = {n: 12};
+        // let b = a;
+        // b = {n: 13};
+        // console.log(a.n);
+
+        // let a = {n: 1};//=>4
+        // let b = a;
+        // a.x = a = {n: 2};
+        // console.log(a.x);
+        // console.log(b);
+
+        // let a = typeof typeof typeof [12,23];//=>5
+        // console.log(a);
+
+        // var name = 10;//=>6
+        // var obj = {
+        //     name: '珠峰培训'
+        // };
+        // console.log(obj.name);
+        // console.log(obj['name']);
+        // console.log(obj[name]);
+
+        // var x=5,//=>7
+        //     y=6;
+        // function func(){
+        //     x+=y;
+        //     func=function(y){
+        //         console.log(y + (--x));
+        //     };
+        //     console.log(x, y);
+        // }
+        // func(4);//x=>11, 11,6
+        // func(3);//13
+        // console.log(x, y);//10,6
+
+        // var x = 4;//=>8
+        // function func() {
+        //     return function(y) {
+        //         console.log(y + (--x));
+        //     }
+        // }
+        // var f = func(5);
+        // f(6);//x = 3, =>9
+        // func(7)(8);//x=2, =>10
+        // f(9);//x=1, =>10
+        // console.log(x);//=>1
+
+
+        // var x = 3,//=>9
+        //     obj = {x: 5};
+        // obj.fn = (function () {
+        //     this.x *= ++x;//x=12
+        //     return function (y) {
+        //         this.x *= (++x)+y;//obj.x=95 x =13    
+        //         console.log(x);
+        //     }
+        // })();
+        // var fn = obj.fn;
+        // obj.fn(6);//=>13
+        // fn(4);//x=13*(14+4)=>234
+        // console.log(obj.x, x);//95,234
+        //运算符优先级：()i++>++i>*/>+->=(赋值)
+
+        // var a = 0;//=>10
+        // if (true) {
+        //     a = 1;
+        //     function a() {};
+        //     a = 21;
+        //     console.log(a)
+        // }
+        // console.log(a);
+
+        // function fun(n, o) {//=>11
+        //     console.log(o);
+        //     return {
+        //         fun: function (m) {
+        //             return fun(m, n);
+        //         }
+        //     };
+        // }
+        // var c = fun(0).fun(1);//undefined 0
+        // c.fun(2);//1
+        // c.fun(3);//1
+
+        // var a = {//=>12
+        //     i: 0,
+        //     toString: function ()
+        //     {return ++this.i;}
+        // }
+        // var a = [1,2,3]
+        // a.toString = a.shift;
+        // if (a == 1 && a == 2 && a == 3) {
+        //     console.log(1);
+        // }
+        //思想，给a设置一个属性toSring，每次比较都能得到不同的值;
+        // 利用Object.defineProperty
+        // var i = 0;
+        // Object.defineProperty(window,'a', {
+        //     get() {
+        //         return ++i;
+        //     }
+        // });
+        
+        // for (var i = 0; i < 10; i++) {//=>13
+        //     setTimeout(() => {
+        //         console.log(i);
+        //     }, 1000);
+        // }
+
+        // var b = 10;//=>14
+        // (function b() {
+        //     b = 20;
+        //     console.log(b);
+        // })();
+        // console.log(b);
+
+        // let obj = {//=>15
+        //     0: 3,
+        //     1: 4,
+        //     length: 0,
+        //     push: Array.prototype.push
+        // }
+        // obj.push(10);
+        // obj.push(20);
+        // console.log(obj);
+
+        //example 1//=>16
+        // let a={}, b='0', c=0;  
+        // a[b]='珠峰';
+        // a[c]='培训';  
+        // console.log(a[b]);//'培训'
+        //---------------------
+        //example 2
+        // let a={}, b=Symbol('1'),     c=Symbol('1');  
+        // a[b]='珠峰';
+        // a[c]='培训';  
+        // console.log(a[b]);
+       // ---------------------
+        //example 3
+        // let a={}, b={n:'1'}, c={m:'2'};  
+        // a[b]='珠峰';
+        // a[c]='培训';    
+        // console.log(a[b]);
+
+        // function Foo() {//=>17
+        //     getName = function () {
+        //         console.log(1);
+        //     };
+        //     return this;
+        // }
+        // Foo.getName = function () {
+        //     console.log(2);
+        // };
+        // Foo.prototype.getName = function () {
+        //     console.log(3);
+        // };
+        // var getName = function () {
+        //     console.log(4);
+        // };
+        // function getName() {
+        //     console.log(5);
+        // }
+        // Foo.getName();//2
+        // getName();//4
+        // Foo().getName();//1 
+        // getName();//1
+        // new Foo.getName();//2
+        // new Foo().getName();//3
+        // new new Foo().getName();//3
+
+        // var test = (function(i){//=>18
+        //     return function(){
+        //         alert(i*=2);
+        //     }
+        // })(2);
+        // test(5);
+        
+        // let fn = function (a,b) {//=>19
+        //     return function (c) {
+        //         return a + b + c;
+        //     }; 
+        // };
+        // let res = fn(1,2)(3);
+        // console.log(res) 
+        
+        // function C1(name) {//=>20
+        //     if (name) {
+        //         this.name = name;
+        //     }
+        // }
+        // function C2(name) {
+        //     this.name = name;
+        // }
+        // function C3(name) {
+        //     this.name = name || 'join';
+        // }
+        // C1.prototype.name = 'Tom';
+        // C2.prototype.name = 'Tom';
+        // C3.prototype.name = 'Tom';
+        // alert((new C1().name) + (new C2().name) + (new C3().name));
+
+        // function Fn() {//=>21
+        //     let a = 1;
+        //     this.a = a;
+        // }
+        // Fn.prototype.say = function () {
+        //     this.a = 2;
+        // }
+        // Fn.prototype = new Fn;
+        // let f1 = new Fn;
+        // Fn.prototype.b = function () {
+        //     this.a = 3;
+        // };
+        // console.log(f1.a);//1
+        // console.log(f1.prototype);//Fn
+        // console.log(f1.b);//funcion () {this.a = 3}
+        // console.log(f1.hasOwnProperty('b'));//false
+        // console.log('b' in f1);//true
+        // console.log(f1.constructor == Fn);//true
+
+        // function Dog(name) {//=>22
+        //     this.name = name;
+        // }
+        // Dog.prototype.bark = function () {
+        //     console.log('wangwang');
+        // }
+        // Dog.prototype.sayName = function () {
+        //     console.log('my name is ' + this.name);
+        // }
+        // function _new(Fn) {
+        //     //=>完成你的代码
+        //     let arr = Array.from(arguments).slice(1),
+        //         obj = Object.create(Fn.prototype);
+        //     let result = Fn.apply(obj, arr);
+        //     if (result !== null && (typeof result === "object" || typeof result === "function")) {
+        //         return result;
+        //     }
+        //     return obj;
+
+        // }
+        // let sanmao = _new(Dog, '三毛');
+        // sanmao.bark(); //=>"wangwang"
+        // sanmao.sayName(); //=>"my name is 三毛"
+        // console.log(sanmao instanceof Dog); //=>true
+
+        // let n = 10;// =>23
+        // Number.prototype.plus= function (a) {return this + a;};
+        // Number.prototype.minus = function (b) {return this - b;};
+        // let m = n.plus(10).minus(5);
+        // console.log(m);//=>15（10+10-5）
+
+        /* // => 24
+        * 编写queryURLParams方法实现如下的效果（至少两种方案）
+        */ 
+        // let url="http://www.zhufengpeixun.cn/?lx=1&from=wx#video";
+        // String.prototype.queryURLParams = function queryURLParams(item) {
+        //     // 基于正则
+        //     // let obj = {};
+        //     // this.replace(/(#[^?#&=]+)/g, (_, group) => {
+        //     //     obj['_HASH'] = group;
+        //     // });
+        //     // this.replace(/([^?#&=]+)=([^?#&=]+)/g, (_, key, value) => {
+        //     //     obj[key] = value;
+        //     // });
+        //     // 基于字符串自身
+        //     let obj = {},
+        //         askIndex = this.indexOf('?'),
+        //         polIndex = this.lastIndexOf('#');
+        //     let askText = this.substring(askIndex + 1,polIndex),
+        //         polText = this.substring(polIndex + 1);
+        //     if (askText) {
+        //         askText.split('&').forEach(cur => {
+        //             let arr = cur.split('=');
+        //             obj[arr[0]] = arr[1];
+        //             return obj;
+        //         });
+        //     }
+        //     polText.length > 0 ? obj['_HASH'] = polText : null;
+        //     return obj[item];
+        // };
+        // console.log(url.queryURLParams("from")); //=>"wx"
+        // console.log(url.queryURLParams("_HASH")); //=>"video"
+
+        function Modal(x,y){// =>25
+            this.x=x;
+            this.y=y;
+        }
+        Modal.prototype.z=10;
+        Modal.prototype.getX=function(){
+            console.log(this.x);
+        }
+        Modal.prototype.getY=function(){
+            console.log(this.y);
+        }
+        Modal.n=200;
+        Modal.setNumber=function(n){
+            this.n=n;
+        };
+        let m = new Modal(10,20);
+        class Model{
+            constructor(x,y,n,setNumber) {
+                this.x = x;
+                this.y = y;
+                n = 200;
+                setNumber = function (n) {
+                    this.n = n
+                }
+            }
+            z = 10;
+            getX() {
+                console.log(this.x);
+            }
+            getY() {
+                console.log(this.y);
+            }
+        }
+        let n = new Model(10,20);
+        console.log(m,n)
+
+    </script>
+</body>
+</html>
