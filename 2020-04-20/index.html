@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回到顶部</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        html,body {
+            height: 500%;
+            background: -webkit-linear-gradient(white,pink,lightblue,green,purple);    
+        }
+        #goBack {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+            width: 80px;
+            height: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="goBack" style="opacity: 0">回到顶部</button>
+
+    <script>
+        let goBack = document.querySelector('#goBack'),
+            HTML = document.documentElement,
+            p = 0,
+            t = 0;
+        let fadeIn = function (btn,speed) {
+            let po = btn.style.opacity;
+            let step = 1 / (speed / 10);
+            let output = setInterval(() => {
+                p += step;
+                if (p > 1) {
+                    p = 1;
+                    clearInterval(output);
+                }
+                btn.style.opacity = p;
+            },30);
+        };
+
+        window.onscroll = function () {
+            let h = HTML.clientHeight,
+                mH = HTML.scrollTop;
+           if (h <= mH) {
+            //    goBack.style.display = 'block';
+            fadeIn(goBack, 1500);
+           } else {
+               goBack.style.opacity = 0;
+           }
+        };
+        goBack.onclick = function () {
+            let step =  Math.round(HTML.scrollTop/(1000/10));
+            let timer = setInterval(() => {
+            t +=  step;
+            if(t > HTML.scrollTop){
+                t = HTML.scrollTop;
+                clearInterval(timer)
+            }
+            HTML.scrollTop -= t;
+            }, 50);
+        };
+    </script>
+</body>
+</html>

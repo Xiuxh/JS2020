@@ -202,3 +202,53 @@ WeakMap：
 #### 8. 请说出你对 “面向对象” 的理解！
 
 #### 9.下面代码的输出结果，为什么？
++ [1,NaN,NaN,NaN]
+map方法执行，回调函数会自动传入三个参数：数组元素、元素索引、数组本身；
+parseInt函数执行需要传两个参数，需要转换的字符串和解析数字的基数（该值介于2~36之间。如果省略改参数或其值为0，则数字将以10为基础来解析。如果它以"0x"或"0X"开头，，将以"16"为基数。如果该参数小于2或者大于36，则parseInt将返回NaN）
+arr.map(parseInt); 相当于 arr.map((item,index) => parseInt(item,index))，输出的结果即为1,NaN,NaN,NaN]
+#### 10.下面代码的输出结果？为什么？
+#### 11.实现如下要求
+//=>编写toType方法，实现数据类型检测
+        function toType( obj ) {
+        //完成你的代码
+            let x = Object.prototype.toString.call(obj),
+                reg = /\s+([a-z]+)/i;
+            return reg.exec(x)[1].toLocaleLowerCase();
+        }
+        console.log(toType(1)); //=>"number"
+        console.log(toType(NaN)); //=>"number"
+        console.log(toType([])); //=>"array"
+        console.log(toType(/^\d+$/)); //=>"regexp"
+        console.log(toType({})); //=>"object"
+#### 12.实现如下要求
+    let arr = [];
+    // for (let i = 0; i < arguments.length; i++) {
+    //     arr[i] = arguments[i];
+    // }
+    Array.from(arguments).forEach(item => {
+            // arr.push(item);
+            arr.unshift(item);
+        });
+        arr = arr.reverse();  
+    console.log(arr); 
+#### 13.实现如下需求
+    let xiu = {};
+    xiu.name = 'Alibaba';
+    this(arguments[1],arguments[2]);
+    xiu.total = window.total;
+    return xiu;
+
+#### 14.
+#### 15.对象(数组)的深克隆和浅克隆（头条)
++ 浅克隆：
+    - 1.直接申明新变量，并将原数组赋值给该变量；
+    - 2.利用Object.assign() 将空数组原始数组合并得到新数组；
+    - 3.利用jQuery的extend方法，$.extend()将空数组与原数组合并（undefined）不参与合并；
++ 深克隆：
+    - 1.利用for循环，将原始数组中的每一项根据索引顺序置于新数组中；
+    - 2.利用for in循环，遍历原始数组，将其自身的每一项传赋值给新数组中对应的位置；
+    - 3.利用数组的slice方法，从索引0开始截断，得到返回的新数组；
+    - 4.利用数组的concat方法，将原始数组与空数组合并
+    - 5.利用展开运算符进行传递赋值`[...arr2] = arr`，得到新数组arr2
+    - 6.利用jQuery的extend方法，$.extend()将true与原始数组合并
+#### 16.实现如下要求

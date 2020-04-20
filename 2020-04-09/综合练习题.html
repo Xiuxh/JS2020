@@ -10,6 +10,7 @@
         // let arr = [1, 2, 3, 4];//=>9
         // arr = arr.map(parseInt);
         // console.log(arr);//[1,NaN,NaN,NaN]
+        // console.log(parseInt(3,2),parseInt(4,3));
         
         // var name = '珠峰培训';//=>10
         // function A(x,y){
@@ -25,7 +26,138 @@
         // Function.prototype.call(A,60,50);//
         // Function.prototype.call.call.call(A,80,70);
 
-        
+        // //=>编写toType方法，实现数据类型检测 //=>11
+        // function toType( obj ) {
+        // //完成你的代码
+        //     let x = Object.prototype.toString.call(obj),
+        //         reg = /\s+([a-z]+)/i;
+        //     return reg.exec(x)[1].toLocaleLowerCase();
+        // }
+        // console.log(toType(1)); //=>"number"
+        // console.log(toType(NaN)); //=>"number"
+        // console.log(toType([])); //=>"array"
+        // console.log(toType(/^\d+$/)); //=>"regexp"
+        // console.log(toType({})); //=>"object"
+
+    //     let utils = (function(){// =>12
+    // /*
+    //  * toArray：转换为数组的方法
+    //  *   @params
+    //  *      不固定数量，不固定类型
+    //  *   @return
+    //  *      [Array] 返回的处理后的新数组
+    //  * by zhufengpeixun on 2020
+    //  */
+    //         function toArray(){
+    //             //=>实现你的代码（多种办法实现）
+    //             let arr = [];
+    //             // for (let i = 0; i < arguments.length; i++) {
+    //             //     arr[i] = arguments[i];
+    //             // }
+    //             Array.from(arguments).forEach(item => {
+    //                     // arr.push(item);
+    //                     arr.unshift(item);
+    //                 });
+    //                 arr = arr.reverse();  
+    //             console.log(arr); 
+    //         }
+
+    //         return {
+    //             toArray
+    //         };
+    //     })();
+    //     let ary = utils.toArray(10,20,30); //=>[10,20,30]
+    //     ary = utils.toArray('A',10,20,30); //=>['A',10,20,30]
+
+    // ~function(){//=>13
+    //     function change(){
+    //         //=>实现你的代码
+    //         let xiu = {};
+    //         xiu.name = 'Alibaba';
+    //         this(arguments[1],arguments[2]);
+    //         xiu.total = window.total;
+    //         return xiu;
+    //     };
+    //     Function.prototype.change = change;
+    // }();
+    // let obj = {name:'zhufeng'};
+    // function func(x,y){
+    //     this.total = x + y;
+    //     return this;
+    // }
+    // let res = func.change(obj,100,200);
+    // //res => {name:'Alibaba',total:300}
+
+    // ~function(){//=> 14
+    // //=>bind方法在IE6~8中不兼容，接下来我们自己基于原生JS实现这个方法
+    //     function bind(){
+
+    //     };
+    //     Function.prototype.bind=bind;
+    // }();
+    // var obj = {name:'zhufeng'};
+    // function func(){
+    //     console.log(this,arguments);
+    //     //=>当点击BODY的时候，执行func方法，输出：obj [100,200,MouseEvent事件对象]
+    // }
+    // document.body.onclick = func.bind(obj,100,200);
+
+    //=>浅克隆：只复制对象或者数组的第一级内容  直接申明赋值，相同指向；利用Object.assign(); 利用jQuery $.extend() 第一项传true是深克隆
+    //=>深克隆：克隆后数组的每一级都和原始数组没有关联 for循环； slice； concat；for in 遍历赋值； 展开运算符； JSON.parse
+    //那么请说出，浅克隆都怎么去实现，如何实现深度克隆
+    // let obj = { // =>15
+    //     a: 100,
+    //     b: [10, 20, 30],
+    //     c: {
+    //         x: 10
+    //     },
+    //     d: /^\d+$/
+    // };
+
+    // let arr = [10, [100, 200], {
+    //     x: 10,
+    //     y: 20
+    // }];
+
+    //=>编写一个ADD函数满足如下需求// =>16
+    // function add() {
+    //     let total = 0;
+    //     for (let i = 0; i < arguments.length; i++) {
+    //         total += arguments[i];
+    //     }
+    //     add.add = 0;
+    //     add.add += total;
+    //     return add;
+    // }
+    // console.log(add(1)(2))
+    // add(1);       //1
+    // add(1)(2);    //3
+    // add(1)(2)(3); //6
+    // add(1)(2,3);  //6
+    // add(1,2)(3);  //6
+    // add(1,2,3);   //6
+
+    /* 
+        在函数式编程当中有一个很重要的概念就是函数组合， 实际上就是把处理数据的函数像管道一样连接起来， 然后让数据穿过管道得到最终的结果。 例如：
+        const add1 = (x) => x + 1;
+        const mul3 = (x) => x * 3;
+        const div2 = (x) => x / 2;
+        div2(mul3(add1(add1(0)))); //=>3
+    ​
+        而这样的写法可读性明显太差了，我们可以构建一个compose函数，它接受任意多个函数作为参数（这些函数都只接受一个参数），然后compose返回的也是一个函数，达到以下的效果：
+        const operate = compose(div2, mul3, add1, add1)
+        operate(0) //=>相当于div2(mul3(add1(add1(0)))) 
+        operate(2) //=>相当于div2(mul3(add1(add1(2))))
+    ​
+        简而言之：compose可以把类似于f(g(h(x)))这种写法简化成compose(f, g, h)(x)，请你完成 compose函数的编写 
+    */
+    function compase() {
+        let result = arguments[arguments.length - 1]
+        for (let i = arguments.leng - 1; i >= 0; i--) {
+            
+        }
+    } 
+            
     </script>
 </body>
 </html>
